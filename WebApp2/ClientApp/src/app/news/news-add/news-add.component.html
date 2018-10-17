@@ -1,0 +1,29 @@
+
+  <div class="container">
+      <h3 mat-dialog-title>Добавить новую новость</h3>
+    
+      <form class="mat-dialog-content" (ngSubmit)="submit" [formGroup]="newsForm">
+    
+  <!--Contains mat-hint for characters count and has maxLengt set-->
+  <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputtitle class="form-control" placeholder="Title" name="Title" formControlName="Title">
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputtitle.value?.length || 0}}/10</mat-hint>
+      </mat-form-field>
+    </div>
+
+        <!--Textarea for demo purposes-->
+        <div class="form">
+          <mat-form-field color="accent">
+            <textarea matInput #input class="form-control" placeholder="Text" name="Text" formControlName="Text"></textarea>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+    
+      <div mat-dialog-actions>
+          <button mat-button [type]="submit" [disabled]="newsForm.invalid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+          <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+        </div>
+      </form>
+    </div>
