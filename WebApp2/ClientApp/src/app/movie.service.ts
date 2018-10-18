@@ -17,5 +17,9 @@ export class MovieService {
     console.log(movie);
     return this.http.post<Movie>(this.url, movie);
   }
+
+  deleteMovie(id: string) {
+    return this.http.delete(this.url + '/' + id);
+  }
   
 }

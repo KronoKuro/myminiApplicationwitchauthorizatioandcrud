@@ -28,6 +28,14 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  deleteMovie(id: string) {
+    debugger;
+    this.movieService.deleteMovie(id).subscribe(resp => {
+      alert('Movies deleted');
+      this.getMovies();
+    });
+  }
+
   
 
 }
