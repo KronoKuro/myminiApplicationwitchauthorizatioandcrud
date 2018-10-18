@@ -10,8 +10,12 @@ export class MovieService {
   private url: string = 'api/home';
 
   getMovies() {
-    debugger;
     return this.http.get<Movie[]>(this.url);
+  }
+
+  addMovie(movie: Movie) {
+    console.log(movie);
+    return this.http.post<Movie>(this.url, movie);
   }
   
 }

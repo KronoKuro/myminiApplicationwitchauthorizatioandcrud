@@ -12,7 +12,7 @@ import { MovieService } from '../movie.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private movieService: MovieService, private router: Router) { };
+  constructor(private movieService: MovieService) { };
 
   movies: Movie[]; 
   

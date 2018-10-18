@@ -20,13 +20,15 @@ import { AuthGuard } from './login-form/auth.guard';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { HomeComponent } from './home/home.component';
 import { MovieService } from './movie.service';
+import { CreateMovieComponent } from './home/create-movie/movie-create.component';
 
 const Routes = [
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'login', component: LoginFormComponent},
   {path: 'home', component: HomeComponent},
   {path: 'register', component: RegisterFormComponent},
-  {path: 'news', component: NewsComponent, }
+  { path: 'news', component: NewsComponent },
+  { path: 'create-movie', component: CreateMovieComponent }
 ];
 
 @NgModule({
@@ -35,6 +37,7 @@ const Routes = [
     LoginFormComponent,
     NewsComponent,
     HomeComponent,
+    CreateMovieComponent,
     NewsAddComponent,
     NewsEditComponent,
     RegisterFormComponent,

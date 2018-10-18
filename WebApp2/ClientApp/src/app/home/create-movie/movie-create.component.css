@@ -1,0 +1,12 @@
+.mat-form-container {
+  display: flex;
+  flex-direction: column;
+  
+}
+.mat-form-container > * {
+  width: 50%;
+  margin: 10px auto;
+}
+.mat-form-container input{
+  margin: 10px auto;
+}

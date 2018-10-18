@@ -1,0 +1,26 @@
+
+<div class="container mat-form-container">
+  <div class="row">
+    <h1 mat-dialog-title>Добавить фильм</h1>
+
+    <form class="mat-dialog-content" (ngSubmit)="submit" [formGroup]="movieForm">
+
+      <!--Contains mat-hint for characters count and has maxLengt set-->
+      <div class="form">
+        <input class="form-control" placeholder="Name" name="Name" formControlName="Name">
+      </div>
+
+      <!--Textarea for demo purposes-->
+      <div class="form">
+        <textarea class="form-control" placeholder="Description" name="Description" formControlName="Description"></textarea>
+      </div>
+      <div class="form">
+        <input class="form-control" placeholder="ReleaseDate" name="ReleaseDate" formControlName="ReleaseDate" />
+      </div>
+      <div>
+        <button class="btn  btn-default" [type]="submit" (click)="addItem()">Save</button>
+        <!--[disabled]="movieForm.invalid"-->
+      </div>
+    </form>
+  </div>
+</div>

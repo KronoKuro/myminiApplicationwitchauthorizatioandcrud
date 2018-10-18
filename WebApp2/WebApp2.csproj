@@ -25,12 +25,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\home\create-movie\movie-create.component.ts" />
     <None Remove="ClientApp\src\app\login-form\auth.guard.ts" />
     <None Remove="ClientApp\src\app\models\movie.model.ts" />
     <None Remove="ClientApp\src\app\movie.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\home\create-movie\movie-create.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\login-form\auth.guard.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\movie.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\movie.service.ts" />
