@@ -73,8 +73,7 @@ public class AuthController : Controller {
         _db.Users.Add(model);
         _db.SaveChanges();
         return Ok(model);
-        
-        ViewBag.Message = "Такой пользователь уже есть";
-        return BadRequest(model);
+        /*ViewBag.Message = "Такой пользователь уже есть";
+        return BadRequest(model);*/
     }
 }

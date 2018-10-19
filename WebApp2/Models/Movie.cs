@@ -14,5 +14,10 @@ namespace WebApp2.Models
         public string Description { get; set; }
 
         public string ReleaseDate { get; set; }
+
+        public Movie()
+        {
+            Id = Guid.NewGuid();
+        }
     }
 }

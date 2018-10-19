@@ -5,7 +5,7 @@ using System.Web;
 
 public class New
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     public string Title { get; set; }
 
@@ -13,4 +13,9 @@ public class New
 
     public DateTime DatePost { get; set; }
 
+    public New()
+    {
+        Id = Guid.NewGuid();
+    }
+    
 }

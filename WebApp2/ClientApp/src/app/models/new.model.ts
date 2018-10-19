@@ -1,5 +1,5 @@
 export class New {
-    public Id : number;
+    public Id: string;
     public Title : string;
     public Text : string;
     public DatePost: Date;   

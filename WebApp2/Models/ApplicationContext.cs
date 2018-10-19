@@ -17,6 +17,11 @@ public class ApplicationContext : IdentityDbContext
         //Database.EnsureCreated();
     }
 
+    public ApplicationContext()
+    {
+
+    }
+
     /* protected override void OnModelCreating(ModelBuilder builder)
     {
 

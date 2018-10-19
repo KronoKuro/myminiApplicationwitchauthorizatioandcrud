@@ -13,18 +13,18 @@ namespace WebApp2.Controllers
     [Route("api/home")]
     public class HomeController : Controller
     {
-        ApplicationContext db;
+        UnitOfWork db;
         IHostingEnvironment env;
-        public HomeController(ApplicationContext _db, IHostingEnvironment _env)
+        public HomeController(IHostingEnvironment _env)
         {
-            db = _db;
+            db = new UnitOfWork();
             env = _env;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<Movie>> GetMovie()
-        {
-            var movies = db.Movies.ToList();
+       {
+            var movies = db.Movies.GetAll().ToList();
             return movies;
         }
 
@@ -37,8 +37,8 @@ namespace WebApp2.Controllers
             {
                 return BadRequest(ModelState);
             }
-            db.Movies.Add(movie);
-            db.SaveChanges();
+            db.Movies.Create(movie);
+            db.Save();
             return Ok();
         }
 
@@ -46,14 +46,8 @@ namespace WebApp2.Controllers
         [Route("{id}")]
         public ActionResult Delete(Guid id)
         {
-            Movie movie = db.Movies.Find(id);
-            if(movie == null)
-            {
-                return NotFound();
-            }
-            
-            db.Movies.Remove(movie);
-            db.SaveChanges();
+            db.Movies.Delete(id);
+            db.Save();
 
             return Ok();
         }
@@ -69,7 +63,7 @@ namespace WebApp2.Controllers
             db.Movies.Update(movie);
             try
             {
-                db.SaveChanges();
+                db.Save();
             }
             catch(DbUpdateConcurrencyException)
             {
@@ -86,7 +80,7 @@ namespace WebApp2.Controllers
 
         private bool MovieExists(Guid id)
         {
-            return db.Movies.Count(e => e.Id == id) > 0;
+            return db.Movies.Count(id) > 0;
         }
     }
 }

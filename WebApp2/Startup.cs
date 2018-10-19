@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using WebApp2.Models;
+using WebApp2.Models.Repositories;
 
 namespace WebApp2
 {
@@ -25,7 +27,7 @@ namespace WebApp2
 
             string connectionString = "Server=(localdb)\\mssqllocaldb; Database=News2;Trusted_Connection=True";
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
-
+            
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -47,6 +49,14 @@ namespace WebApp2
                 });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            //services.AddScoped<IRepository<Movie>, MovieRepository>();
+            //services.AddScoped<IRepository<New>, NewsRepository>();
+            services.AddSingleton<IRepository<Movie>, MovieRepository>();
+            services.AddSingleton<IRepository<New>, NewsRepository>();
+
+
+            services.AddMvc();
 
             services.AddCors(options =>
             {

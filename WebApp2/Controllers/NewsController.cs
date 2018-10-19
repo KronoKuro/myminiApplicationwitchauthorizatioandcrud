@@ -8,15 +8,15 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using WebApp2.Models;
 
-   
-    [Route("api/news")]
+[Route("api/news")]
     public class NewsController : Controller
     {
-        ApplicationContext db;
+        UnitOfWork db;
         IHostingEnvironment env;
 
-        public NewsController(ApplicationContext _db, IHostingEnvironment _env) {
+        public NewsController(UnitOfWork _db, IHostingEnvironment _env) {
             db = _db;
             env = _env;
         }
@@ -25,14 +25,14 @@ using Microsoft.AspNetCore.Authorization;
         [HttpGet]
         public IActionResult GetNews()
         {
-            return Ok(db.News);
+            return Ok(db.News.GetAll());
         }
 
         // GET: api/News/5
         [Authorize]
-        public IActionResult GetNews(int id)
+        public IActionResult GetNews(Guid id)
         {
-            New news = db.News.Find(id);
+            New news = db.News.Get(id);
             if (news == null)
             {
                 return NotFound();
@@ -55,7 +55,7 @@ using Microsoft.AspNetCore.Authorization;
 
             try
             {
-                db.SaveChanges();
+                db.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -84,8 +84,8 @@ using Microsoft.AspNetCore.Authorization;
                 return BadRequest(ModelState);
             }
 
-            db.News.Add(news);
-            db.SaveChanges();
+            db.News.Create(news);
+            db.Save();
 
             //return CreatedAtRoute("DefaultApi", new { id = news.Id }, news);
             return Ok();
@@ -94,16 +94,15 @@ using Microsoft.AspNetCore.Authorization;
         // DELETE: api/News/5
         [Authorize]
         [Route("{id}")]
-        public IActionResult DeleteNews(int id)
+        public IActionResult DeleteNews(Guid id)
         {
-            New news = db.News.Find(id);
+            New news = db.News.Get(id);
             if (news == null)
             {
                 return NotFound();
             }
-
-            db.News.Remove(news);
-            db.SaveChanges();
+            db.News.Delete(id);
+            db.Save();
 
             return Ok(news);
         }
@@ -117,8 +116,8 @@ using Microsoft.AspNetCore.Authorization;
             base.Dispose(disposing);
         }
 
-        private bool NewsExists(int id)
+        private bool NewsExists(Guid id)
         {
-            return db.News.Count(e => e.Id == id) > 0;
+            return db.News.Count(id) > 0;
         }
     }
