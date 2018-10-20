@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using WebApp2.Models.Abstract;
+using WebApp2.Models.Repositories;
 
 namespace WebApp2
 {
@@ -47,6 +49,8 @@ namespace WebApp2
                 });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTransient<IMovieRepository, MovieRepository>();
+            services.AddTransient<INewsRepository, NewsRepository>();
 
 
 

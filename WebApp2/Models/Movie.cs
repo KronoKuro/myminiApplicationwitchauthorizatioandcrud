@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebApp2.Models
 {
@@ -13,6 +10,6 @@ namespace WebApp2.Models
 
         public string Description { get; set; }
 
-        public string ReleaseDate { get; set; }
+        public DateTime ReleaseDate { get; set; }
     }
 }

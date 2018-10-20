@@ -1,30 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using WebApp2.Models;
+using WebApp2.Models.Abstract;
 
 namespace WebApp2.Controllers
 {
     [Route("api/home")]
     public class HomeController : Controller
     {
-        ApplicationContext db;
+        private IMovieRepository db;
         IHostingEnvironment env;
-        public HomeController(ApplicationContext _db, IHostingEnvironment _env)
+        public HomeController(IMovieRepository _repository, IHostingEnvironment _env)
         {
-            db = _db;
+            db = _repository;
             env = _env;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<Movie>> GetMovie()
         {
-            var movies = db.Movies.ToList();
+            var movies = db.GetAll().ToList();
             return movies;
         }
 
@@ -37,8 +36,7 @@ namespace WebApp2.Controllers
             {
                 return BadRequest(ModelState);
             }
-            db.Movies.Add(movie);
-            db.SaveChanges();
+            db.Create(movie);
             return Ok();
         }
 
@@ -46,15 +44,13 @@ namespace WebApp2.Controllers
         [Route("{id}")]
         public ActionResult Delete(Guid id)
         {
-            Movie movie = db.Movies.Find(id);
-            if(movie == null)
+            Movie movie = db.Get(id);
+            if (movie == null)
             {
                 return NotFound();
             }
-            
-            db.Movies.Remove(movie);
-            db.SaveChanges();
 
+            db.Delete(id);
             return Ok();
         }
 
@@ -62,31 +58,23 @@ namespace WebApp2.Controllers
         [HttpPut]
         public ActionResult PutMovie([FromBody]Movie movie)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            db.Movies.Update(movie);
-            try
+
+            var item = db.Get(movie.Id);
+            if (item != null)
             {
-                db.SaveChanges();
+                db.Update(movie);
             }
-            catch(DbUpdateConcurrencyException)
+            else
             {
-                if (!MovieExists(movie.Id))
-                {
-                    return NotFound();
-                }else
-                {
-                    throw;
-                }
+                return NotFound();
             }
+
             return Ok();
         }
 
-        private bool MovieExists(Guid id)
-        {
-            return db.Movies.Count(e => e.Id == id) > 0;
-        }
     }
 }
