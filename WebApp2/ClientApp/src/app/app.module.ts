@@ -21,6 +21,10 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { HomeComponent } from './home/home.component';
 import { MovieService } from './movie.service';
 import { CreateMovieComponent } from './home/create-movie/movie-create.component';
+import { MovieDetailComponent } from './home/detail-movie/movie-detail.component';
+import { MovieEditComponent } from './home/edit-movie/edit-movie.component';
+
+
 
 const Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -28,7 +32,9 @@ const Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'register', component: RegisterFormComponent},
   { path: 'news', component: NewsComponent },
-  { path: 'create-movie', component: CreateMovieComponent }
+  { path: 'create-movie', component: CreateMovieComponent },
+  { path: 'detail-movie/:id', component: MovieDetailComponent }
+  // { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
@@ -41,6 +47,8 @@ const Routes = [
     NewsAddComponent,
     NewsEditComponent,
     RegisterFormComponent,
+    MovieDetailComponent,
+    MovieEditComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

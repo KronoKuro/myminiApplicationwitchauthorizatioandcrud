@@ -13,6 +13,10 @@ export class MovieService {
     return this.http.get<Movie[]>(this.url);
   }
 
+  getMovie(id: string) {
+    return this.http.get(this.url + '/' + id);
+  }
+
   addMovie(movie: Movie) {
     console.log(movie);
     return this.http.post<Movie>(this.url, movie);

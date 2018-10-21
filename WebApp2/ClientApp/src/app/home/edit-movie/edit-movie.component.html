@@ -7,22 +7,21 @@
     
 <div class="wrap_movie container-fluid">
   <div class="wrap_movies_items row">
-    <h1>Список Фильмов</h1>
-    <mat-card class="example-card col-sm-4" *ngFor="let m of movies">
+    <h1>{{movie.name}}</h1>
+    <mat-card class="example-card col-sm-12">
       <mat-card-header>
-        <mat-card-title>{{m.releaseDate}}</mat-card-title>
-        <mat-card-subtitle>{{m.name}}</mat-card-subtitle>
+        <mat-card-title>{{movie.releaseDate}}</mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <p>
-          {{m.description.substring(0,100)}}...
+          {{movie.description}}
         </p>
       </mat-card-content>
       <mat-card-actions>
         <button mat-button>LIKE</button>
         <button mat-button>SHARE</button>
         <button class="btn btn-default" (click)="deleteMovie(m.id)">delete</button>
-        <a href="/detail-movie/{{m.id}}">Details</a>
       </mat-card-actions>
     </mat-card>
   </div>

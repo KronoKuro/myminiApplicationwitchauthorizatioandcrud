@@ -12,7 +12,7 @@ import { MovieService } from '../movie.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private movieService: MovieService) { };
+  constructor(private movieService: MovieService) { }
 
   movies: Movie[]; 
   
@@ -35,7 +35,4 @@ export class HomeComponent implements OnInit {
       this.getMovies();
     });
   }
-
-  
-
 }

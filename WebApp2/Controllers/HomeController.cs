@@ -27,6 +27,22 @@ namespace WebApp2.Controllers
             return movies;
         }
 
+        [HttpGet("{id}")]
+        public ActionResult GetById(Guid id)
+        {
+            var movie = db.Get(id);
+            if (movie != null)
+            {
+                return Ok(movie);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
+
 
         [Authorize]
         [HttpPost]
