@@ -23,6 +23,7 @@ import { MovieService } from './movie.service';
 import { CreateMovieComponent } from './home/create-movie/movie-create.component';
 import { MovieDetailComponent } from './home/detail-movie/movie-detail.component';
 import { MovieEditComponent } from './home/edit-movie/edit-movie.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 
 
@@ -40,6 +41,7 @@ const Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    NavigationComponent,
     LoginFormComponent,
     NewsComponent,
     HomeComponent,
