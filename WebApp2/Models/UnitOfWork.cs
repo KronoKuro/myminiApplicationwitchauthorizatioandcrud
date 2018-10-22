@@ -8,7 +8,17 @@ namespace WebApp2.Models
 {
     public class UnitOfWork : IDisposable
     {
-        private ApplicationContext db = new ApplicationContext();
+        private ApplicationContext db;
+        public UnitOfWork(ApplicationContext context)
+        {
+            this.db = context;
+        }
+
+        public UnitOfWork()
+        {
+
+        }
+
         private NewsRepository newsRepoitory;
         private MovieRepository movieRepository;
 

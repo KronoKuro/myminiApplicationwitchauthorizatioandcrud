@@ -17,10 +17,10 @@ public class ApplicationContext : IdentityDbContext
         //Database.EnsureCreated();
     }
 
-    public ApplicationContext()
+    /*public ApplicationContext()
     {
 
-    }
+    }*/
 
     /* protected override void OnModelCreating(ModelBuilder builder)
     {

@@ -50,10 +50,8 @@ namespace WebApp2
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            //services.AddScoped<IRepository<Movie>, MovieRepository>();
-            //services.AddScoped<IRepository<New>, NewsRepository>();
-            services.AddSingleton<IRepository<Movie>, MovieRepository>();
-            services.AddSingleton<IRepository<New>, NewsRepository>();
+            services.AddTransient<IRepository<Movie>, MovieRepository>();
+            services.AddTransient<IRepository<New>, NewsRepository>();
 
 
             services.AddMvc();

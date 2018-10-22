@@ -7,7 +7,7 @@ namespace WebApp2.Models.Repositories
 {
     public class MovieRepository : IRepository<Movie>
     {
-        private ApplicationContext db = new ApplicationContext();
+        private ApplicationContext db;
         public MovieRepository(ApplicationContext context)
         {
             this.db = context;
