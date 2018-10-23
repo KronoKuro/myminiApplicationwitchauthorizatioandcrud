@@ -17,19 +17,16 @@ export class HomeComponent implements OnInit {
   movies: Movie[]; 
   
   ngOnInit() {
-    debugger;
     this.getMovies();
   }
 
   getMovies() {
-    debugger;
     this.movieService.getMovies().subscribe(resp => {
       this.movies = resp;
     });
   }
 
   deleteMovie(id: string) {
-    debugger;
     this.movieService.deleteMovie(id).subscribe(resp => {
       alert('Movies deleted');
       this.getMovies();

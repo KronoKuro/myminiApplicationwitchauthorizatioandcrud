@@ -34,7 +34,8 @@ const Routes = [
   {path: 'register', component: RegisterFormComponent},
   { path: 'news', component: NewsComponent },
   { path: 'create-movie', component: CreateMovieComponent },
-  { path: 'detail-movie/:id', component: MovieDetailComponent }
+  { path: 'detail-movie/:id', component: MovieDetailComponent },
+  { path: 'edit-movie/:id', component: MovieEditComponent },
   // { path: '**', component: NotFoundComponent }
 ];
 

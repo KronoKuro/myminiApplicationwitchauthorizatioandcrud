@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using WebApp2.Models.Abstract;
@@ -31,7 +32,21 @@ namespace WebApp2.Models.Repositories
 
         public void Update(Movie movie)
         {
-            db.Movies.Update(movie);
+            //db.Movies.Update(movie);
+            //db.SaveChanges();
+            
+            var local = db.Set<Movie>().Local.FirstOrDefault(entry => entry.Id.Equals(movie.Id));
+
+            // check if local is not null 
+            if (local != null) // I'm using a extension method
+            {
+                // detach
+                db.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            db.Entry(movie).State = EntityState.Modified;
+
+            // save 
             db.SaveChanges();
         }
 

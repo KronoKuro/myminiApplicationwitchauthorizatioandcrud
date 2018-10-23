@@ -5,6 +5,7 @@ namespace WebApp2.Models.Infrastructure
 {
     public static class Seed
     {
+        //вызов этого классы происходит в Program 
         public static void Initialize(ApplicationContext context)
         {
             if (!context.News.Any())

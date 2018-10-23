@@ -14,7 +14,8 @@ export class MovieService {
   }
 
   getMovie(id: string) {
-    return this.http.get(this.url + '/' + id);
+    debugger;
+    return this.http.get<Movie>(this.url + '/' + id);
   }
 
   addMovie(movie: Movie) {
@@ -25,5 +26,13 @@ export class MovieService {
   deleteMovie(id: string) {
     return this.http.delete(this.url + '/' + id);
   }
-  
+
+  updateMovie(movie: Movie) {
+    console.log(movie);
+    this.http.put(this.url, movie).subscribe(resp => {
+      console.log(this.url + '/' + movie.id, movie);
+    }, error => {
+      console.log(error);
+      })
+  }  
 }

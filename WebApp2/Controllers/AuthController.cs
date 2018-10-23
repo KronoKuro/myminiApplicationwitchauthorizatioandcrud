@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using WebApp2.Models.Infrastructure;
 
 public class AuthController : Controller {
     ApplicationContext _db;
@@ -47,6 +48,7 @@ public class AuthController : Controller {
     }
     
     public ClaimsIdentity GetIdentity(string login, string password) {
+        password = Crypt.Encript(password, login.ToLower());
         User user = _db.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
         if(user != null) {
             var claims = new List<Claim> {
@@ -70,6 +72,7 @@ public class AuthController : Controller {
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
+        model.Password = Crypt.Encript(model.Password, model.Login.ToLower());
         _db.Users.Add(model);
         _db.SaveChanges();
         return Ok(model);
