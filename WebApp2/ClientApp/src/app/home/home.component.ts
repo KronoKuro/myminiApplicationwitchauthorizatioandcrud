@@ -13,7 +13,7 @@ import { MovieService } from '../movie.service';
 export class HomeComponent implements OnInit {
 
   constructor(private movieService: MovieService) { }
-
+  isadmin: boolean = localStorage.getItem('admin');
   movies: Movie[]; 
   
   ngOnInit() {

@@ -23,7 +23,9 @@ export class LoginFormComponent implements OnInit {
     this.authService.login(this.loginForm.getRawValue()).subscribe(resp => {
       localStorage.setItem('access_token', resp['access_token']);
       localStorage.setItem('user_name', resp['user_name']);
+      localStorage.setItem('admin', resp['admin']);
       console.log(resp['access_token']);
+      console.log(resp['admin']);
       this.router.navigate(['news']);
     }, error => {
       alert(error['error']);

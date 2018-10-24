@@ -3,14 +3,16 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace WebApp2.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20181024091751_change5")]
+    partial class change5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -245,9 +247,11 @@ namespace WebApp2.Migrations
 
                     b.Property<string>("Password");
 
-                    b.Property<string>("RoleId");
+                    b.Property<Guid>("RoleId");
 
-                    b.HasIndex("RoleId");
+                    b.Property<string>("RoleId1");
+
+                    b.HasIndex("RoleId1");
 
                     b.ToTable("User");
 
@@ -303,7 +307,7 @@ namespace WebApp2.Migrations
                 {
                     b.HasOne("WebApp2.Models.Role", "Role")
                         .WithMany()
-                        .HasForeignKey("RoleId");
+                        .HasForeignKey("RoleId1");
                 });
 #pragma warning restore 612, 618
         }

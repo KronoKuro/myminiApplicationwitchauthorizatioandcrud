@@ -44,7 +44,7 @@ namespace WebApp2.Controllers
 
 
 
-        [Authorize]
+        [Authorize(Roles ="Admin")]
         [HttpPost]
         public ActionResult Add([FromBody]Movie movie)
         {
@@ -56,7 +56,7 @@ namespace WebApp2.Controllers
             return Ok();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [Route("{id}")]
         public ActionResult Delete(Guid id)
         {
@@ -70,7 +70,7 @@ namespace WebApp2.Controllers
             return Ok();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         public ActionResult PutMovie([FromBody]Movie movie)
         {

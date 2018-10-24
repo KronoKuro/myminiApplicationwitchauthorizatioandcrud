@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NewsService } from '../news.service';
 import { Observable } from 'rxjs';
 import { New } from '../models/new.model';
@@ -15,10 +15,10 @@ import { Router } from '@angular/router';
 export class NewsComponent implements OnInit {
 
   constructor(private newsService: NewsService,private dialog: MatDialog, private router: Router) { };
-
+  isadmin: boolean = localStorage.getItem('admin');
   news: New[]; 
-  displayedColumns: string[] = ['Id','Title','Text','DatePost', 'actions'];
-
+  displayedColumns: string[] = ['Id', 'Title', 'Text', 'DatePost', 'actions'];
+  
   ngOnInit() {
     this.getNews();
   }

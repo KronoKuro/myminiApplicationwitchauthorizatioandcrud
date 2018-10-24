@@ -24,6 +24,7 @@ import { CreateMovieComponent } from './home/create-movie/movie-create.component
 import { MovieDetailComponent } from './home/detail-movie/movie-detail.component';
 import { MovieEditComponent } from './home/edit-movie/edit-movie.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { RoleGuard } from './role.guard';
 
 
 
@@ -33,9 +34,9 @@ const Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'register', component: RegisterFormComponent},
   { path: 'news', component: NewsComponent },
-  { path: 'create-movie', component: CreateMovieComponent },
+  { path: 'create-movie', component: CreateMovieComponent, canActivate: [RoleGuard], data: {expectedRole:'Admin'}},
   { path: 'detail-movie/:id', component: MovieDetailComponent },
-  { path: 'edit-movie/:id', component: MovieEditComponent },
+  { path: 'edit-movie/:id', component: MovieEditComponent, canActivate: [RoleGuard], data: { expectedRole: 'Admin' } },
   // { path: '**', component: NotFoundComponent }
 ];
 
@@ -66,7 +67,7 @@ const Routes = [
     NewsAddComponent,
     NewsEditComponent,
   ],
-  providers: [AuthService, NewsService, MovieService, AuthGuard,
+  providers: [AuthService, NewsService, MovieService, AuthGuard, RoleGuard,
               {
                 provide: HTTP_INTERCEPTORS ,
                 useClass: AuthInterceptor,

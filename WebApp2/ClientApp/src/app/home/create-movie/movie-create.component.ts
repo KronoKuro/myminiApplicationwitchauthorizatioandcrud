@@ -10,7 +10,6 @@ import { Router } from "@angular/router";
   styleUrls: ['./movie-create.component.css']
 })
 export class CreateMovieComponent {
-  debbuger;
   constructor(private movieServices: MovieService, private router: Router) {
     this.movieForm = new FormGroup({
       'Name': new FormControl('', [Validators.required, Validators.maxLength(250)]),
