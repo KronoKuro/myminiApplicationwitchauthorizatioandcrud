@@ -25,6 +25,7 @@ import { MovieDetailComponent } from './home/detail-movie/movie-detail.component
 import { MovieEditComponent } from './home/edit-movie/edit-movie.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { RoleGuard } from './role.guard';
+import { GenresServices } from './genres.services';
 
 
 
@@ -67,7 +68,7 @@ const Routes = [
     NewsAddComponent,
     NewsEditComponent,
   ],
-  providers: [AuthService, NewsService, MovieService, AuthGuard, RoleGuard,
+  providers: [AuthService, NewsService, MovieService, GenresServices, AuthGuard, RoleGuard,
               {
                 provide: HTTP_INTERCEPTORS ,
                 useClass: AuthInterceptor,

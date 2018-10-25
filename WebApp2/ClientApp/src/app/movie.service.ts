@@ -14,7 +14,6 @@ export class MovieService {
   }
 
   getMovie(id: string) {
-    debugger;
     return this.http.get<Movie>(this.url + '/' + id);
   }
 

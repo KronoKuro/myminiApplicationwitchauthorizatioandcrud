@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../news.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { GenresServices } from '../genres.services';
+import { Genre } from '../models/genre.model';
 
 @Component({
   selector: 'app-navigation',
@@ -10,9 +12,20 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent {
 
-  constructor(private router: Router) { };
-
+  genres: Genre[];
   isExpanded = false;
+
+  constructor(private router: Router, private genreServie: GenresServices) { };
+
+  ngOnInit() {
+    this.getGenres();
+  }
+
+  getGenres() {
+    this.genreServie.getGenres().subscribe(res => {
+      this.genres = res;
+    });
+  }
 
   collapse() {
     this.isExpanded = false;

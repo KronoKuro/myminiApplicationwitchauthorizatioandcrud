@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Movie } from '../../models/movie.model';
 import { MovieService } from '../../movie.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { of } from 'rxjs/observable/of';
 
 
 @Component({
@@ -14,7 +15,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class MovieEditComponent implements OnInit {
 
   ed: FormGroup;
-  
+  movie$: Observable<Movie>;
+
   constructor(private movieService: MovieService,
   private activateRouter: ActivatedRoute,
     public router: Router)
@@ -23,19 +25,22 @@ export class MovieEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getMovie();
+    const id = this.activateRouter.snapshot.paramMap.get('id');
+    this.getMovie(id);
   }
 
-  getMovie() {
-    const id = this.activateRouter.snapshot.paramMap.get('id');
-    this.movieService.getMovie(id).subscribe(res => {
-    this.ed = new FormGroup({
+  getMovie(id) {
+      this.movieService.getMovie(id).subscribe(res => {
+      console.log(res);
+      this.ed = new FormGroup({
         'id': new FormControl(res.id, Validators.required),
         'name': new FormControl(res.name, Validators.required),
         'description': new FormControl(res.description, Validators.required),
         'releaseDate': new FormControl(res.releaseDate, Validators.required),
       });
+      this.movie$ = of(res);
     });
+   
     
   }
   

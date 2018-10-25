@@ -11,5 +11,6 @@ namespace WebApp2.Models
         public string Description { get; set; }
 
         public DateTime ReleaseDate { get; set; }
+        
     }
 }

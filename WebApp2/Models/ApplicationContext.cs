@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using WebApp2.Models;
 
-public class ApplicationContext : IdentityDbContext 
+public class ApplicationContext : IdentityDbContext
 {
     public DbSet<New> News { get; set; }
 
@@ -12,6 +12,8 @@ public class ApplicationContext : IdentityDbContext
     public DbSet<Movie> Movies { get; set; }
 
     public DbSet<Role> Roles { get; set; }
+
+    public DbSet<Genre> Genres { get; set; }
 
     public ApplicationContext(DbContextOptions<ApplicationContext> options) 
         :base(options)

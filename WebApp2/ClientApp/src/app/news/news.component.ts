@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material';
 import { NewsAddComponent } from './news-add/news-add.component';
 import { NewsEditComponent } from './news-edit/news-edit.component';
 import { Router } from '@angular/router';
+import { RoleGuard } from '../role.guard';
 
 @Component({
   selector: 'app-news',
@@ -13,13 +14,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
-
-  constructor(private newsService: NewsService,private dialog: MatDialog, private router: Router) { };
-  isadmin: boolean = localStorage.getItem('admin');
+  isadmin: boolean = false;
+  constructor(private newsService: NewsService, private dialog: MatDialog, private router: Router, private role: RoleGuard) { };
+   
   news: New[]; 
   displayedColumns: string[] = ['Id', 'Title', 'Text', 'DatePost', 'actions'];
   
   ngOnInit() {
+    this.isadmin = this.role.IsAdmin();
+    console.log(this.isadmin);
     this.getNews();
   }
 

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Movie } from '../models/movie.model';
 import { MovieService } from '../movie.service';
+import { RoleGuard } from '../role.guard';
 
 
 @Component({
@@ -11,13 +12,14 @@ import { MovieService } from '../movie.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private movieService: MovieService) { }
-  isadmin: boolean = localStorage.getItem('admin');
+  isadmin: boolean = false;
+  constructor(private movieService: MovieService, private role: RoleGuard) { }
+   
   movies: Movie[]; 
   
   ngOnInit() {
     this.getMovies();
+    this.isadmin = this.role.IsAdmin();
   }
 
   getMovies() {

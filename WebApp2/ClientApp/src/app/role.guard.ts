@@ -2,6 +2,7 @@ import { CanActivate, ActivatedRouteSnapshot, ActivatedRoute, Router } from "@an
 import * as decode from 'jwt-decode';
 import { Injectable } from "@angular/core";
 import { AuthService } from "./auth.service";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class RoleGuard implements CanActivate {
@@ -9,16 +10,26 @@ export class RoleGuard implements CanActivate {
 
   canActivate(router: ActivatedRouteSnapshot): boolean {
     const expectedRole = router.data.expectedRole;
-    console.log(expectedRole);
     const token = localStorage.getItem('access_token');
-    console.log(token);
     const tokenPayLoad = decode(token);
-    console.log(tokenPayLoad);
-    console.log(tokenPayLoad.role);
+    
+    
     if (!this.authService.checkAcess() || tokenPayLoad.role !== expectedRole) {
       this.router.navigate(['login']);
       return false;
     }
     return true;
+  }
+
+  IsAdmin() {
+    const token = localStorage.getItem('access_token');
+    if (token != null) {
+    const tokenPayLoad = decode(token);
+    if (tokenPayLoad.role == "Admin")
+      return true;
+    
+      return false;
+    }
+    return false;
   }
 }

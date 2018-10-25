@@ -22,6 +22,7 @@
         <button mat-button>LIKE</button>
         <button mat-button>SHARE</button>
         <button *ngIf="isadmin" class="btn btn-default" (click)="deleteMovie(m.id)">delete</button>
+        <a *ngIf="isadmin" href="/edit-movie/{{m.id}}">Edit</a>
         <a href="/detail-movie/{{m.id}}">Details</a>
       </mat-card-actions>
     </mat-card>

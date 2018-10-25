@@ -53,6 +53,7 @@ namespace WebApp2
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<IMovieRepository, MovieRepository>();
             services.AddTransient<INewsRepository, NewsRepository>();
+            services.AddTransient<IGenreRepository, GenreRepository>();
 
 
 
