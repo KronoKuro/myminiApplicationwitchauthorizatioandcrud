@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace WebApp2.Models
 {
@@ -11,6 +12,12 @@ namespace WebApp2.Models
         public string Description { get; set; }
 
         public DateTime ReleaseDate { get; set; }
-        
+
+        /*public virtual ICollection<Genre> Genres { get; set; }
+
+        public Movie()
+        {
+            Genres = new List<Genre>();
+        }*/
     }
 }

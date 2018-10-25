@@ -32,6 +32,8 @@
     <None Remove="ClientApp\src\app\models\movie.model.ts" />
     <None Remove="ClientApp\src\app\movie.service.ts" />
     <None Remove="ClientApp\src\app\role.guard.ts" />
+    <None Remove="ClientApp\src\app\user.services.ts" />
+    <None Remove="ClientApp\src\app\user\user.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,6 +44,8 @@
     <TypeScriptCompile Include="ClientApp\src\app\models\movie.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\movie.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\role.guard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\user.services.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\user\user.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
