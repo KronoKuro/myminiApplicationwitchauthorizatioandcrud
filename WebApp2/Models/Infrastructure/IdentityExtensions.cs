@@ -29,7 +29,7 @@ namespace WebApp2.Models.Infrastructure
             var ci = identity as ClaimsIdentity;
             if(ci != null)
             {
-                var id = ci.FindFirst(ClaimTypes.NameIdentifier);
+                var id = ci.FindFirst("id");
                 if(id != null)
                 {
                     return (T)Convert.ChangeType(id.Value, typeof(T), CultureInfo.InvariantCulture);

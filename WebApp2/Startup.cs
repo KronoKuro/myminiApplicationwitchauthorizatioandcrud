@@ -7,8 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using WebApp2.Models.Abstract;
 using WebApp2.Models.Repositories;
 
@@ -54,6 +52,7 @@ namespace WebApp2
             services.AddTransient<IMovieRepository, MovieRepository>();
             services.AddTransient<INewsRepository, NewsRepository>();
             services.AddTransient<IGenreRepository, GenreRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
 
 
 
@@ -112,7 +111,7 @@ namespace WebApp2
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
- 
+
             //app.UseCors(build => build.WithOrigins("https://localhost:4321/temp/workbench.html").AllowAnyHeader().AllowAnyMethod());
         }
     }

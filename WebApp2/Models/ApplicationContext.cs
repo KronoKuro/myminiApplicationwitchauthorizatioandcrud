@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
 using WebApp2.Models;
 
 public class ApplicationContext : IdentityDbContext
@@ -15,12 +14,20 @@ public class ApplicationContext : IdentityDbContext
 
     public DbSet<Genre> Genres { get; set; }
 
-    public ApplicationContext(DbContextOptions<ApplicationContext> options) 
-        :base(options)
+    public ApplicationContext(DbContextOptions<ApplicationContext> options)
+        : base(options)
     {
         //Database.EnsureCreated();
     }
 
+    /* protected override void OnModelCreating(ModelBuilder builder)
+     {
+         base.OnModelCreating(builder);
+
+         builder.ApplyConfiguration(new MovieConfiguration());
+         builder.ApplyConfiguration(new NewsConfiguration());
+
+     }*/
     /* protected override void OnModelCreating(ModelBuilder builder)
     {
 

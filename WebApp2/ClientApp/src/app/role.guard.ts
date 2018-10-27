@@ -12,8 +12,6 @@ export class RoleGuard implements CanActivate {
     const expectedRole = router.data.expectedRole;
     const token = localStorage.getItem('access_token');
     const tokenPayLoad = decode(token);
-    
-    
     if (!this.authService.checkAcess() || tokenPayLoad.role !== expectedRole) {
       this.router.navigate(['login']);
       return false;
@@ -25,10 +23,11 @@ export class RoleGuard implements CanActivate {
     const token = localStorage.getItem('access_token');
     if (token != null) {
     const tokenPayLoad = decode(token);
-    if (tokenPayLoad.role == "Admin")
+    if (tokenPayLoad.role === "Admin"){
       return true;
-    
-      return false;
+    }
+    else {
+      return false;} 
     }
     return false;
   }
