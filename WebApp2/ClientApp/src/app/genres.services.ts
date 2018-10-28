@@ -14,4 +14,9 @@ export class GenresServices{
     return this.http.get<Genre[]>(this.url);
   }
 
+  getGenreById(id: string) {
+    debugger;
+    return this.http.get(this.url + '/' + id);
+  }
+
 }

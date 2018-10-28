@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using WebApp2.Models.Abstract;
 
 namespace WebApp2.Controllers
@@ -21,6 +19,12 @@ namespace WebApp2.Controllers
         public IActionResult GetGenres()
         {
             return Ok(repository.GetAll().ToList());
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetMovieByGenry(Guid id)
+        {
+            return Ok(repository.GetById(id));
         }
     }
 }

@@ -13,11 +13,6 @@ namespace WebApp2.Models
 
         public DateTime ReleaseDate { get; set; }
 
-        /*public virtual ICollection<Genre> Genres { get; set; }
-
-        public Movie()
-        {
-            Genres = new List<Genre>();
-        }*/
+        public virtual ICollection<GenreMovie> GenreMovie { get; } = new List<GenreMovie>();
     }
 }

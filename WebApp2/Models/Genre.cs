@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebApp2.Models
 {
@@ -11,11 +9,7 @@ namespace WebApp2.Models
 
         public string Name { get; set; }
 
-        /*public virtual ICollection<Movie> Movies { get; set; }
+        public virtual ICollection<GenreMovie> GenreMovie { get; } = new List<GenreMovie>();
 
-        public Genre()
-        {
-            Movies = new List<Movie>();
-        }*/
     }
 }

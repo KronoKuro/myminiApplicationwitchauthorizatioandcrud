@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\genres.services.ts" />
+    <None Remove="ClientApp\src\app\genre\genre.component.ts" />
     <None Remove="ClientApp\src\app\home\create-movie\movie-create.component.ts" />
     <None Remove="ClientApp\src\app\login-form\auth.guard.ts" />
     <None Remove="ClientApp\src\app\models\genre.model.ts" />
@@ -39,6 +40,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\genres.services.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\genre\genre.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\home\create-movie\movie-create.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\login-form\auth.guard.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\genre.model.ts" />

@@ -28,7 +28,7 @@ import { RoleGuard } from './role.guard';
 import { GenresServices } from './genres.services';
 import { UserComponent } from './user/user.component';
 import { UserServices } from './user.services';
-
+import { GenreComponent } from './genre/genre.component';
 
 
 const Routes = [
@@ -40,6 +40,7 @@ const Routes = [
   { path: 'create-movie', component: CreateMovieComponent, canActivate: [RoleGuard], data: {expectedRole:'Admin'}},
   { path: 'detail-movie/:id', component: MovieDetailComponent },
   { path: 'edit-movie/:id', component: MovieEditComponent, canActivate: [RoleGuard], data: { expectedRole: 'Admin' } },
+  { path: 'genres/:id', component: GenreComponent },
   // { path: '**', component: NotFoundComponent }
 ];
 
@@ -57,6 +58,7 @@ const Routes = [
     MovieDetailComponent,
     MovieEditComponent,
     UserComponent,
+    GenreComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

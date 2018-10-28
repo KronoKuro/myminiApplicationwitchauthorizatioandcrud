@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WebApp2.Map;
 using WebApp2.Models;
 
 public class ApplicationContext : IdentityDbContext
@@ -14,20 +15,31 @@ public class ApplicationContext : IdentityDbContext
 
     public DbSet<Genre> Genres { get; set; }
 
+
     public ApplicationContext(DbContextOptions<ApplicationContext> options)
         : base(options)
     {
-        //Database.EnsureCreated();
+        Database.EnsureCreated();
     }
 
-    /* protected override void OnModelCreating(ModelBuilder builder)
-     {
-         base.OnModelCreating(builder);
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
 
-         builder.ApplyConfiguration(new MovieConfiguration());
-         builder.ApplyConfiguration(new NewsConfiguration());
+        builder.ApplyConfiguration(new MovieConfiguration());
+        builder.ApplyConfiguration(new NewsConfiguration());
+        builder.Entity<GenreMovie>()
+            .HasKey(gm => new { gm.GenreId, gm.MovieId });
+        builder.Entity<GenreMovie>()
+            .HasOne(gm => gm.Movie)
+            .WithMany(g => g.GenreMovie)
+            .HasForeignKey(gm => gm.MovieId);
+        builder.Entity<GenreMovie>()
+            .HasOne(gm => gm.Genre)
+            .WithMany(g => g.GenreMovie)
+            .HasForeignKey(gm => gm.GenreId);
+    }
 
-     }*/
     /* protected override void OnModelCreating(ModelBuilder builder)
     {
 

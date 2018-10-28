@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WebApp2.Models.Abstract;
 
 namespace WebApp2.Models.Repositories
@@ -24,16 +24,18 @@ namespace WebApp2.Models.Repositories
         public void Delete(Guid id)
         {
             Genre genre = db.Genres.FirstOrDefault(g => g.Id == id);
-            if(genre != null)
+            if (genre != null)
             {
                 db.Genres.Remove(genre);
                 db.SaveChanges();
             }
         }
 
-        public Genre Get(Guid id)
+        public IEnumerable GetById(Guid id)
         {
-            return db.Genres.FirstOrDefault(g => g.Id == id);
+            return db.Genres.Include(s => s.GenreMovie)
+                .ThenInclude(m => m.Movie)
+                .Where(g => g.Id == id);
         }
 
         public IEnumerable<Genre> GetAll()
@@ -44,7 +46,7 @@ namespace WebApp2.Models.Repositories
         public void Update(Genre item)
         {
             var local = db.Set<Genre>().FirstOrDefault(entry => entry.Id.Equals(item.Id));
-            if(local != null)
+            if (local != null)
             {
                 db.Entry(local).State = EntityState.Detached;
             }
